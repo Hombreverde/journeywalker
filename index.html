@@ -1,0 +1,207 @@
+<title>Journey Walker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450;0,9..144,600;1,9..144,450&family=Source+Sans+3:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#FCFBF8; --paper-2:#F4F2EC; --card:#FFFFFF;
+  --ink:#22271F; --ink-2:#49503F; --muted:#7A7F6E;
+  --line:#DEDBD0; --line-soft:#EAE7DE;
+  --trail:#2F6B4F; --trail-soft:#E4EEE8; --stop:#B5763A;
+  --shadow:0 1px 2px rgba(34,39,31,.05), 0 12px 30px -16px rgba(34,39,31,.18);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#171A15; --paper-2:#1F231C; --card:#1C201A;
+    --ink:#ECEBE3; --ink-2:#C3C4B5; --muted:#8E937F;
+    --line:#343A2E; --line-soft:#282D23;
+    --trail:#7FBB9B; --trail-soft:#24352C; --stop:#D9A567;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 30px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#171A15; --paper-2:#1F231C; --card:#1C201A;
+  --ink:#ECEBE3; --ink-2:#C3C4B5; --muted:#8E937F;
+  --line:#343A2E; --line-soft:#282D23;
+  --trail:#7FBB9B; --trail-soft:#24352C; --stop:#D9A567;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 30px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Source Sans 3",system-ui,sans-serif; font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:960px; margin:0 auto; padding:0 22px}
+a{color:var(--trail)}
+p{margin:0}
+
+/* nav */
+nav{display:flex; justify-content:space-between; align-items:center; padding:26px 0 0}
+.wordmark{font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:19px; letter-spacing:.01em}
+.wordmark i{font-style:normal; color:var(--trail)}
+nav a.demo{font-size:14px; font-weight:600; text-decoration:none; color:var(--trail);
+  border:1.5px solid var(--trail); border-radius:999px; padding:7px 16px}
+
+/* hero */
+.hero{padding:72px 0 40px; display:flex; flex-direction:column; gap:26px; align-items:flex-start}
+.hero h1{font-family:"Fraunces",Georgia,serif; font-weight:450; font-size:clamp(38px,6.4vw,64px);
+  line-height:1.08; letter-spacing:-.01em; margin:0; max-width:19ch; text-wrap:balance}
+.hero h1 em{font-style:italic; color:var(--trail)}
+.hero .sub{font-size:19px; color:var(--ink-2); max-width:56ch}
+.cta{display:flex; gap:12px; flex-wrap:wrap}
+.btn{font-size:15px; font-weight:600; text-decoration:none; border-radius:999px; padding:11px 22px}
+.btn.primary{background:var(--trail); color:var(--paper); border:1.5px solid var(--trail)}
+.btn.ghost{color:var(--ink); border:1.5px solid var(--line)}
+.btn:focus-visible{outline:2px solid var(--stop); outline-offset:2px}
+
+/* route motif */
+.route{width:100%; overflow:hidden; margin:8px 0 0}
+.route svg{width:100%; height:auto; display:block}
+
+/* sections */
+section{padding:54px 0 0}
+.kicker{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--stop);
+  font-weight:600; margin:0 0 10px}
+h2{font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:clamp(26px,3.6vw,36px);
+  line-height:1.15; margin:0 0 18px; letter-spacing:-.005em; text-wrap:balance}
+.lede{font-size:18px; color:var(--ink-2); max-width:62ch}
+
+.steps{display:grid; grid-template-columns:1fr; gap:16px; margin-top:26px}
+@media(min-width:760px){.steps{grid-template-columns:1fr 1fr 1fr}}
+.step{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px;
+  box-shadow:var(--shadow); display:flex; flex-direction:column; gap:9px}
+.step .n{width:30px; height:30px; border-radius:999px; background:var(--trail-soft); color:var(--trail);
+  display:grid; place-items:center; font-weight:600; font-size:14px}
+.step h3{font-family:"Fraunces",Georgia,serif; font-size:19px; font-weight:600; margin:0}
+.step p{font-size:15px; color:var(--ink-2)}
+
+.principles{display:flex; flex-direction:column; gap:0; margin-top:26px;
+  border:1px solid var(--line); border-radius:14px; background:var(--card); box-shadow:var(--shadow); overflow:hidden}
+.pr{display:grid; grid-template-columns:1fr; gap:6px; padding:22px; border-bottom:1px solid var(--line-soft)}
+@media(min-width:700px){.pr{grid-template-columns:280px 1fr; gap:24px}}
+.pr:last-child{border-bottom:none}
+.pr b{font-family:"Fraunces",Georgia,serif; font-size:19px; font-weight:600; font-style:italic}
+.pr p{font-size:15.5px; color:var(--ink-2)}
+
+.fly{background:var(--paper-2); border-radius:16px; padding:30px 26px; margin-top:26px;
+  display:flex; flex-direction:column; gap:14px}
+.fly p{max-width:66ch; color:var(--ink-2)}
+.fly .loop{font-family:"Fraunces",Georgia,serif; font-style:italic; font-size:19px; color:var(--ink)}
+.figures{display:flex; gap:34px; flex-wrap:wrap; margin-top:6px}
+.fig b{display:block; font-family:"Fraunces",Georgia,serif; font-size:30px; font-weight:600; color:var(--trail); line-height:1.1}
+.fig span{font-size:13.5px; color:var(--muted)}
+
+.status{display:grid; grid-template-columns:1fr; gap:12px; margin-top:26px}
+@media(min-width:760px){.status{grid-template-columns:1fr 1fr}}
+.st{display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line);
+  border-radius:12px; padding:16px 18px; box-shadow:var(--shadow)}
+.st i{font-style:normal; margin-top:2px}
+.st p{font-size:15px; color:var(--ink-2)}
+.st p b{color:var(--ink)}
+
+.founder{display:grid; grid-template-columns:1fr; gap:22px; margin-top:26px; align-items:start}
+@media(min-width:760px){.founder{grid-template-columns:1fr 1fr}}
+.founder .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px;
+  box-shadow:var(--shadow); display:flex; flex-direction:column; gap:10px}
+.founder h3{font-family:"Fraunces",Georgia,serif; font-size:20px; margin:0; font-weight:600}
+.founder p{font-size:15.5px; color:var(--ink-2)}
+
+footer{margin-top:70px; border-top:1px solid var(--line); padding:26px 0 60px;
+  display:flex; flex-direction:column; gap:6px; font-size:14px; color:var(--muted)}
+footer .wordmark{font-size:16px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<nav>
+  <span class="wordmark">Journey <i>Walker</i></span>
+  <a class="demo" href="https://hombreverde.github.io/jw-test/">Live prototype →</a>
+</nav>
+
+<div class="hero">
+  <h1>The best guide to a neighbourhood is <em>someone who lives there.</em></h1>
+  <p class="sub">Journey Walker turns residents' knowledge of their own streets into guided cultural walks — a free app for people who walk two hours, unhurried, and want to understand what they see.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://hombreverde.github.io/jw-test/">Try the live prototype</a>
+    <a class="btn ghost" href="mailto:joseponsoda@gmail.com">Talk to the founder</a>
+  </div>
+</div>
+
+<div class="route" aria-hidden="true">
+  <svg viewBox="0 0 960 150" fill="none">
+    <path d="M-10 118 C 90 118, 120 52, 210 56 S 360 122, 460 108 S 610 30, 720 44 S 900 96, 980 78"
+      stroke="var(--trail)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 9"/>
+    <g>
+      <circle cx="60" cy="114" r="11" fill="var(--trail)"/>
+      <text x="60" y="119" text-anchor="middle" font-size="12" font-weight="700" fill="var(--paper)" font-family="Source Sans 3,sans-serif">D</text>
+      <circle cx="210" cy="56" r="6" fill="var(--stop)"/>
+      <circle cx="460" cy="108" r="6" fill="var(--stop)"/>
+      <circle cx="600" cy="52" r="6" fill="var(--stop)"/>
+      <circle cx="810" cy="66" r="6" fill="var(--stop)"/>
+      <circle cx="925" cy="80" r="11" fill="none" stroke="var(--trail)" stroke-width="3"/>
+    </g>
+  </svg>
+</div>
+
+<section>
+  <p class="kicker">How it works</p>
+  <h2>Two apps, one loop.</h2>
+  <p class="lede">Tourism concentrates millions of people on the same ten streets. Journey Walker opens the other ninety percent of the city — through the people who live there.</p>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><h3>A resident walks</h3><p>With the recording app, a resident walks two hours through their own neighbourhood — their shortcuts, their stops, what you don't see on the first pass. Zero questions during the walk; five minutes of debrief at the end.</p></div>
+    <div class="step"><span class="n">2</span><h3>The route becomes a walk</h3><p>The trace, the stops and the resident's own words become a guided walk — reviewed, curated, and anchored to the real ground it was walked on.</p></div>
+    <div class="step"><span class="n">3</span><h3>A visitor follows — freely</h3><p>The companion app guides at the visitor's pace. Every stop is an invitation, never an order: skip it, linger, wander off. The walk belongs to the walker.</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">Principles</p>
+  <h2>Built on three sentences.</h2>
+  <div class="principles">
+    <div class="pr"><b>“The itinerary is the interview.”</b><p>We never sit residents down for questionnaires. Where they walk, where they pause, what they say at the end — that is the knowledge, captured in its natural form.</p></div>
+    <div class="pr"><b>“Every stop is an invitation.”</b><p>No turn-by-turn tyranny. The app suggests, reveals, and steps aside. Divergence from the route isn't an error — sometimes it's a resident's shortcut worth learning from.</p></div>
+    <div class="pr"><b>“We record the path, never the person.”</b><p>Recording starts on an explicit tap, once in the street — never at a doorstep. No profile, no tracking, traces deleted after aggregation. Privacy is a design principle, not a settings page.</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">Business model</p>
+  <h2>Free for walkers. Funded by the street itself.</h2>
+  <div class="fly">
+    <p class="loop">Sponsors fund routes → routes recruit walkers → walkers create routes.</p>
+    <p>Each certified route is a corridor of local visibility: the cafés, bookshops and workshops along the way sponsor the walk that brings them exactly the visitors they want — people who move slowly and look around. The flywheel is local by construction, and replicates city by city.</p>
+    <div class="figures">
+      <div class="fig"><b>~2,400</b><span>businesses mapped along our 10 benchmark Paris routes</span></div>
+      <div class="fig"><b>10</b><span>benchmark routes curated across Paris</span></div>
+      <div class="fig"><b>0 €</b><span>forever, for walkers and visitors</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">Where we are</p>
+  <h2>Prototype live. Paris next.</h2>
+  <div class="status">
+    <div class="st"><i>✅</i><p><b>Both apps deployed and field-tested</b> — visitor app and resident recording app, with the complete loop (record → judge divergences → debrief → share) demonstrated end-to-end in August 2026.</p></div>
+    <div class="st"><i>📍</i><p><b>Ottawa test bench:</b> six full field walks, real GPS traces at 3–4 m median accuracy, every lesson folded back into the product.</p></div>
+    <div class="st"><i>🗼</i><p><b>Paris pilot under way:</b> 159 organisations and elected officials contacted as of September 2026 — including 22 of the city's official walking clubs — and an open door at the Montmartre neighbourhood council.</p></div>
+    <div class="st"><i>🚶</i><p><b>November 2026:</b> the founder spends the full month on the ground in Paris, recording the first resident routes in Montmartre.</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="kicker">Who's behind it</p>
+  <h2>One founder. A studio of AI agents. Real streets.</h2>
+  <div class="founder">
+    <div class="card"><h3>José Ponsoda — Founder</h3><p>A retired entrepreneur from Gatineau, Canada, who walks every route himself — the first resident route of Journey Walker is his. He directs <b>Nostrafanum Production Lab</b>, an AI-agent studio that ships the entire product: two deployed apps, the GPS pipeline, the data schemas, the outreach system.</p></div>
+    <div class="card"><h3>Why it matters</h3><p>One experienced operator directing specialised AI agents, with human-in-the-loop governance, put two field-tested apps online for under €20k. That cost structure isn't an anecdote — it's the company's unfair advantage, and it scales.</p><p>Now raising a seed round to launch at major-capital scale, starting with Paris.</p></div>
+  </div>
+</section>
+
+<footer>
+  <span class="wordmark">Journey <i>Walker</i></span>
+  <p>Gestion des Algonkins Inc. · Gatineau (Québec), Canada — operating in Paris</p>
+  <p>joseponsoda@gmail.com</p>
+</footer>
+
+</div>
